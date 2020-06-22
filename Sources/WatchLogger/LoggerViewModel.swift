@@ -5,7 +5,7 @@
 //  Created by Enzo Sterro on 21.06.2020.
 //
 
-import SwiftUI
+import Foundation
 
 public final class LoggerViewModel: ObservableObject {
 
