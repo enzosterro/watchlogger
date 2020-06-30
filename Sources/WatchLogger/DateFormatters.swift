@@ -11,7 +11,7 @@ extension DateFormatter {
 
     static let timeFormatterForLogger: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.setLocalizedDateFormatFromTemplate("HHmmss")
         return formatter
     }()
 
