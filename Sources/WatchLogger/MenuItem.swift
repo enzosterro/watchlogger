@@ -20,7 +20,9 @@ struct MenuItem: View {
     var body: some View {
         Button(action: action) {
             VStack {
+                #if os(watchOS)
                 Image(systemName: iconName).font(.title)
+                #endif
                 Text(label)
             }
         }

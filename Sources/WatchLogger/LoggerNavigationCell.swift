@@ -17,8 +17,8 @@ struct LoggerNavigationCell: View {
     // MARK: Body
 
     var body: some View {
-        Button(model.title, action: { self.isPresented.toggle() })
-            .sheet(isPresented: $isPresented, content: { LoggerContent(content: self.model.content) })
+        Button(model.title) { isPresented.toggle() }
+            .sheet(isPresented: $isPresented) { LoggerContent(content: model.content) }
     }
 
 }
