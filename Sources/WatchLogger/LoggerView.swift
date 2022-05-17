@@ -21,7 +21,7 @@ public struct LoggerView: View {
                 Text("No Entries").font(.caption)
             } else {
                 List {
-                    ForEach(viewModel.loggerURLs, content: LoggerNavigationCell.init)
+                    ForEach(viewModel.loggerURLs.sorted(by: <), content: LoggerNavigationCell.init)
                 }
             }
         }

@@ -11,7 +11,7 @@ struct LoggerURL: Identifiable {
 
     // MARK: Properties
 
-    let id = UUID()
+    var id: Int { title.hashValue }
     let url: URL
 
     var content: String {
@@ -22,10 +22,26 @@ struct LoggerURL: Identifiable {
         url.deletingPathExtension().lastPathComponent
     }
 
+    var date: Date {
+        let component = url.deletingPathExtension()
+            .lastPathComponent
+        return TimeInterval(component).flatMap { Date(timeIntervalSince1970: $0) } ?? Date()
+    }
+
     // MARK: Init
 
     init(url: URL) {
         self.url = url
     }
 
+}
+
+// MARK: - Equatable
+
+extension LoggerURL: Comparable {
+
+    static func <(lhs: Self, rhs: Self) -> Bool {
+        lhs.date < rhs.date
+    }
+    
 }

@@ -17,14 +17,13 @@ public enum WatchLogger {
         #endif
     }
 
-    private static var documentsDirectory: URL? = {
+    private static let documentsDirectory: URL? = {
         FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     }()
 
     private static var logFile: URL? {
-        let dateString = DateFormatter.dateFormatterForLogger.string(from: Date())
-        let fileName = "\(dateString).log"
-        return documentsDirectory?.appendingPathComponent(fileName)
+        let startOfTheDay = Calendar.current.startOfDay(for: Date()).timeIntervalSince1970
+        return documentsDirectory?.appendingPathComponent("\(startOfTheDay).log")
     }
 
     private static func log(_ message: String) {
