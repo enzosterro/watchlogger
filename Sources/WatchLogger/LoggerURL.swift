@@ -19,7 +19,7 @@ struct LoggerURL: Identifiable {
     }
 
     var title: String {
-        url.deletingPathExtension().lastPathComponent
+        DateFormatter.dateFormatterForLogger.string(from: date)
     }
 
     var date: Date {
