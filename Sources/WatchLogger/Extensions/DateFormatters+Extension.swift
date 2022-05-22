@@ -17,7 +17,8 @@ extension DateFormatter {
 
     static let dateFormatterForLogger: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.timeStyle = .none
+        formatter.dateStyle = .short
         return formatter
     }()
 

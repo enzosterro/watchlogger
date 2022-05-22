@@ -11,37 +11,27 @@ struct LoggerURL: Identifiable {
 
     // MARK: Properties
 
-    var id: Int { title.hashValue }
     let url: URL
+    var id: Int { date.hashValue }
 
-    var content: String {
-        (try? String(contentsOf: url, encoding: .utf8)) ?? "Empty"
-    }
 
     var title: String {
-        DateFormatter.dateFormatterForLogger.string(from: date)
+        date.map(DateFormatter.dateFormatterForLogger.string(from:)) ?? "Unknown Date"
     }
 
-    var date: Date {
-        let component = url.deletingPathExtension()
-            .lastPathComponent
-        return TimeInterval(component).flatMap { Date(timeIntervalSince1970: $0) } ?? Date()
-    }
-
-    // MARK: Init
-
-    init(url: URL) {
-        self.url = url
+    private var date: Date? {
+        TimeInterval(url.deletingPathExtension().lastPathComponent)
+            .map { Date(timeIntervalSince1970: $0) }
     }
 
 }
 
-// MARK: - Equatable
+// MARK: - Comparable
 
 extension LoggerURL: Comparable {
 
     static func <(lhs: Self, rhs: Self) -> Bool {
-        lhs.date < rhs.date
+        lhs.date.map { rhs.date?.compare($0) } == .orderedAscending
     }
     
 }

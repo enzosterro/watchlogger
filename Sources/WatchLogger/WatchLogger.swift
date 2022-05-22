@@ -12,8 +12,9 @@ public enum WatchLogger {
 
     public static func log(_ message: String = "", type: OSLogType = .debug, filename: String = #file, function: String = #function, line: Int = #line) {
         #if !RELEASE
-        os_log(type, "%@:%d, %@ %@", NSString(string: filename).lastPathComponent, line, function, message)
-        log(String(format: "%@:%d, %@ %@", NSString(string: filename).lastPathComponent, line, function, message))
+        let lastPathComponent = NSString(string: filename).lastPathComponent
+        os_log(type, "%@:%d, %@ %@", lastPathComponent, line, function, message)
+        log(String(format: "%@:%d, %@ %@", lastPathComponent, line, function, message))
         #endif
     }
 

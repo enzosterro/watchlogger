@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "WatchLogger",
-    platforms: [.watchOS(.v6), .macOS(.v10_15), .iOS(.v13)],
+    platforms: [.watchOS(.v7), .iOS(.v14)],
     products: [.library(name: "WatchLogger", targets: ["WatchLogger"])],
     targets: [.target(name: "WatchLogger", dependencies: [])],
     swiftLanguageVersions: [.v5]

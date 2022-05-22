@@ -11,8 +11,8 @@ public final class LoggerViewModel: ObservableObject {
 
     // MARK: Properties
 
-    private let dataSource: LoggerDataSource
     @Published var loggerURLs = [LoggerURL]()
+    private let dataSource: LoggerDataSource
 
     // MARK: Init
 
